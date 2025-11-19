@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "autoplans": {
+      "command": "npx",
+      "args": ["autoplans-mcp"],
+      "env": {
+        "AUTOPLANS_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}

@@ -37,6 +37,40 @@ export AUTOPLANS_API_KEY="your_api_key_here"
 autoplans-mcp
 ```
 
+**Quick Setup for Popular Editors**
+
+**VS Code / Cursor:**
+```json
+{
+  "mcp.servers": {
+    "autoplans": {
+      "command": "npx",
+      "args": ["autoplans-mcp"],
+      "env": {
+        "AUTOPLANS_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+**Claude Desktop:**
+```json
+{
+  "mcpServers": {
+    "autoplans": {
+      "command": "npx",
+      "args": ["autoplans-mcp"],
+      "env": {
+        "AUTOPLANS_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+📖 **[Complete Installation Guide](./INSTALLATION.md)** - Detailed setup for all editors
+
 **Publish steps**
 
 Initialize git and push to GitHub (example):
