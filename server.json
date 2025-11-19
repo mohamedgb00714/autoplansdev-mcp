@@ -1,8 +1,7 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
   "name": "io.github.msaid/autoplans-mcp",
   "description": "MCP Server for Autoplans.dev - AI-powered project planning and task management tools with 14+ tools for projects, tasks, business plans, and branding",
-  "status": "active",
   "repository": {
     "url": "https://github.com/msaid/autoplans-mcp",
     "source": "github"
@@ -10,17 +9,17 @@
   "version": "0.1.0",
   "packages": [
     {
-      "registry_type": "github",
+      "registryType": "github",
       "identifier": "msaid/autoplans-mcp",
       "version": "0.1.0",
       "transport": {
         "type": "stdio"
       },
-      "environment_variables": [
+      "environmentVariables": [
         {
           "name": "AUTOPLANS_API_KEY",
           "description": "API key for Autoplans.dev service. Get yours at https://autoplans.dev",
-          "required": true
+          "isRequired": true
         }
       ]
     }
