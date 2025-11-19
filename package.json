@@ -1,0 +1,28 @@
+{
+  "name": "autoplans-mcp",
+  "version": "0.1.0",
+  "description": "MCP client wrapper for Autoplans.dev HTTP API",
+  "main": "index.js",
+  "bin": {
+    "autoplans-mcp": "./index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol", 
+    "autoplans",
+    "project-management",
+    "ai-planning"
+  ],
+  "author": "Autoplans.dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohamedgb00714/autoplans-mcp.git"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  }
+}
