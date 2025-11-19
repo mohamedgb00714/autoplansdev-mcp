@@ -1,0 +1,96 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.msaid/autoplans-mcp",
+  "description": "MCP Server for Autoplans.dev - AI-powered project planning and task management tools with 14+ tools for projects, tasks, business plans, and branding",
+  "status": "active",
+  "repository": {
+    "url": "https://github.com/msaid/autoplans-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registry_type": "http",
+      "registry_base_url": "https://autoplans.dev/api/v1/mcp",
+      "identifier": "autoplans-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "http",
+        "base_url": "https://autoplans.dev/api/v1/mcp",
+        "headers": {
+          "Authorization": "Bearer ${AUTOPLANS_API_KEY}"
+        }
+      },
+      "environment_variables": [
+        {
+          "name": "AUTOPLANS_API_KEY",
+          "description": "API key for Autoplans.dev service. Get yours at https://autoplans.dev",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "tools": [
+      {
+        "name": "list_projects",
+        "description": "List all projects for the authenticated user with optional filtering by status and limit"
+      },
+      {
+        "name": "create_project", 
+        "description": "Create a new project with name, description, and optional GitHub repository URL"
+      },
+      {
+        "name": "get_project",
+        "description": "Get detailed information about a specific project by UUID"
+      },
+      {
+        "name": "create_task",
+        "description": "Create a new task in a project with title, description, priority, and type"
+      },
+      {
+        "name": "list_tasks",
+        "description": "List all tasks in a project with optional status filtering"
+      },
+      {
+        "name": "get_task",
+        "description": "Get detailed information about a specific task including subtasks"
+      },
+      {
+        "name": "update_task",
+        "description": "Update task properties like status, priority, title, description, or assignment"
+      },
+      {
+        "name": "delete_task", 
+        "description": "Delete a task from a project permanently"
+      },
+      {
+        "name": "bulk_update_tasks",
+        "description": "Update multiple tasks at once (e.g., change status for multiple tasks)"
+      },
+      {
+        "name": "bulk_create_tasks",
+        "description": "Create multiple tasks at once from an array of task objects"
+      },
+      {
+        "name": "get_business_plan",
+        "description": "Get business plan for a project including mission, vision, and strategy"
+      },
+      {
+        "name": "create_business_plan", 
+        "description": "Create a comprehensive business plan for a project"
+      },
+      {
+        "name": "get_branding",
+        "description": "Get branding information for a project including colors, logos, and brand identity"
+      },
+      {
+        "name": "create_branding",
+        "description": "Create branding for a project with colors, logos, and brand identity"
+      }
+    ],
+    "resources": false,
+    "prompts": false
+  },
+  "keywords": ["project-management", "ai-planning", "task-management", "business-plan", "branding", "autoplans", "github-integration"]
+}
