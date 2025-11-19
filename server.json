@@ -6,12 +6,12 @@
     "url": "https://github.com/mohamedgb00714/autoplans-mcp",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "packages": [
     {
-      "registryType": "github",
-      "identifier": "mohamedgb00714/autoplans-mcp",
-      "version": "0.1.0",
+      "registryType": "npm",
+      "identifier": "autoplans-mcp",
+      "version": "0.1.1",
       "transport": {
         "type": "stdio"
       },

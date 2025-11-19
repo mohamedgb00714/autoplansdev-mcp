@@ -1,7 +1,8 @@
 {
   "name": "autoplans-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP client wrapper for Autoplans.dev HTTP API",
+  "mcpName": "io.github.mohamedgb00714/autoplans-mcp",
   "main": "index.js",
   "bin": {
     "autoplans-mcp": "./index.js"
