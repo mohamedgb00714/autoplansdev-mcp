@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "dev.autoplans.mcp",
+  "name": "Autoplans MCP Server",
+  "version": "0.1.0",
+  "description": "MCP manifest for the Autoplans MCP server — tools for project planning and automation.",
+  "author": {
+    "name": "Autoplans",
+    "url": "https://autoplans.dev"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/msaid/autoplans-mcp",
+  "homepage": "https://autoplans.dev/api/v1/mcp",
+  "contact": "mailto:support@autoplans.dev",
+  "auth": {
+    "type": "bearer",
+    "description": "Clients MUST obtain their own API key from https://autoplans.dev and present it as a Bearer token in the `Authorization` header: `Authorization: Bearer <YOUR_API_KEY>`. Each user needs their own API key."
+  },
+  "health": {
+    "url": "https://autoplans.dev/api/v1/mcp/health",
+    "intervalSeconds": 60
+  },
+  "tools": [
+    {
+      "id": "autoplans.list_projects",
+      "name": "List Projects",
+      "description": "List all projects for the authenticated user",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "description": "Filter by status (planning, in_progress, completed, archived)", "enum": ["planning", "in_progress", "completed", "archived"] },
+          "limit": { "type": "number", "description": "Maximum results to return (default: 50)", "default": 50 }
+        }
+      }
+    },
+    {
+      "id": "autoplans.create_project",
+      "name": "Create Project",
+      "description": "Create a new project in autoplans.dev",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "description": "Project name" },
+          "description": { "type": "string", "description": "Project description" },
+          "githubRepoUrl": { "type": "string", "description": "GitHub repository URL" }
+        },
+        "required": ["name"]
+      }
+    },
+    {
+      "id": "autoplans.get_project",
+      "name": "Get Project",
+      "description": "Get details of a specific project",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project UUID" }
+        },
+        "required": ["projectId"]
+      }
+    },
+    {
+      "id": "autoplans.create_task",
+      "name": "Create Task",
+      "description": "Create a new task in a project",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project UUID" },
+          "title": { "type": "string", "description": "Task title" },
+          "description": { "type": "string", "description": "Task description" },
+          "priority": { "type": "string", "description": "Task priority", "enum": ["low", "medium", "high", "critical"] },
+          "type": { "type": "string", "description": "Task type", "enum": ["coding", "design", "documentation", "testing", "other"] }
+        },
+        "required": ["projectId", "title"]
+      }
+    },
+    {
+      "id": "autoplans.list_tasks",
+      "name": "List Tasks",
+      "description": "List tasks in a project",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project UUID" },
+          "status": { "type": "string", "description": "Filter by status", "enum": ["pending", "in_progress", "blocked", "completed", "failed", "waiting_for_review"] }
+        },
+        "required": ["projectId"]
+      }
+    },
+    {
+      "id": "autoplans.get_task",
+      "name": "Get Task",
+      "description": "Get details of a specific task including subtasks",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string", "description": "Task UUID" }
+        },
+        "required": ["taskId"]
+      }
+    },
+    {
+      "id": "autoplans.update_task",
+      "name": "Update Task",
+      "description": "Update a task (status, priority, description, etc.)",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string", "description": "Task UUID" },
+          "status": { "type": "string", "description": "Task status", "enum": ["pending", "in_progress", "blocked", "completed", "failed", "waiting_for_review"] },
+          "priority": { "type": "string", "description": "Task priority", "enum": ["low", "medium", "high", "critical"] },
+          "title": { "type": "string", "description": "Task title" },
+          "description": { "type": "string", "description": "Task description" },
+          "assignedTo": { "type": "string", "description": "Who the task is assigned to", "enum": ["unassigned", "ai-agent", "user"] }
+        },
+        "required": ["taskId"]
+      }
+    },
+    {
+      "id": "autoplans.delete_task",
+      "name": "Delete Task",
+      "description": "Delete a task from a project",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string", "description": "Task UUID" }
+        },
+        "required": ["taskId"]
+      }
+    },
+    {
+      "id": "autoplans.bulk_update_tasks",
+      "name": "Bulk Update Tasks",
+      "description": "Update multiple tasks at once (e.g., change status for multiple tasks)",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project UUID" },
+          "taskIds": { "type": "array", "items": { "type": "string" }, "description": "Array of task UUIDs to update" },
+          "updates": { "type": "object", "description": "Fields to update (status, priority, assignedTo, etc.)" }
+        },
+        "required": ["projectId", "taskIds", "updates"]
+      }
+    },
+    {
+      "id": "autoplans.bulk_create_tasks",
+      "name": "Bulk Create Tasks",
+      "description": "Create multiple tasks at once from an array of task objects",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project UUID" },
+          "tasks": {
+            "type": "array",
+            "description": "Array of task objects to create",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string", "description": "Task title (required)" },
+                "description": { "type": "string", "description": "Task description" },
+                "type": { "type": "string", "description": "Task type", "enum": ["coding", "design", "documentation", "testing", "other"] },
+                "priority": { "type": "string", "description": "Task priority", "enum": ["low", "medium", "high", "critical"] },
+                "status": { "type": "string", "description": "Initial status", "enum": ["pending", "in_progress", "blocked", "completed"] },
+                "assignedTo": { "type": "string", "description": "Assignment", "enum": ["unassigned", "ai-agent", "user"] }
+              },
+              "required": ["title"]
+            }
+          }
+        },
+        "required": ["projectId", "tasks"]
+      }
+    },
+    {
+      "id": "autoplans.get_business_plan",
+      "name": "Get Business Plan",
+      "description": "Get business plan for a project",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project UUID" }
+        },
+        "required": ["projectId"]
+      }
+    },
+    {
+      "id": "autoplans.create_business_plan",
+      "name": "Create Business Plan",
+      "description": "Create a business plan for a project",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project UUID" },
+          "businessName": { "type": "string", "description": "Business name" },
+          "tagline": { "type": "string", "description": "Business tagline" },
+          "executiveSummary": { "type": "string", "description": "Executive summary" },
+          "missionStatement": { "type": "string", "description": "Mission statement" },
+          "visionStatement": { "type": "string", "description": "Vision statement" }
+        },
+        "required": ["projectId"]
+      }
+    },
+    {
+      "id": "autoplans.get_branding",
+      "name": "Get Branding",
+      "description": "Get branding for a project",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project UUID" }
+        },
+        "required": ["projectId"]
+      }
+    },
+    {
+      "id": "autoplans.create_branding",
+      "name": "Create Branding",
+      "description": "Create branding for a project",
+      "entrypoint": "https://autoplans.dev/api/v1/mcp",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": { "type": "string", "description": "Project UUID" },
+          "brandName": { "type": "string", "description": "Brand name" },
+          "tagline": { "type": "string", "description": "Brand tagline" },
+          "primaryColor": { "type": "object", "description": "Primary color (JSON object with name, hex, rgb, usage)" },
+          "secondaryColor": { "type": "object", "description": "Secondary color (JSON object)" },
+          "logoPrimaryUrl": { "type": "string", "description": "Primary logo URL" }
+        },
+        "required": ["projectId"]
+      }
+    }
+  ],
+  "manifestVersion": "v1"
+}
