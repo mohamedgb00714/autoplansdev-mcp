@@ -31,9 +31,13 @@
     }
   ],
   "capabilities": {
-    "tools": [
-      {
-        "name": "list_projects",
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  },
+  "tools": [
+    {
+      "name": "list_projects",
         "description": "List all projects for the authenticated user with optional filtering by status and limit"
       },
       {
@@ -88,9 +92,7 @@
         "name": "create_branding",
         "description": "Create branding for a project with colors, logos, and brand identity"
       }
-    ],
-    "resources": false,
-    "prompts": false
+    ]
   },
   "keywords": ["project-management", "ai-planning", "task-management", "business-plan", "branding", "autoplans", "github-integration"]
 }
