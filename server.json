@@ -10,16 +10,11 @@
   "version": "0.1.0",
   "packages": [
     {
-      "registry_type": "http",
-      "registry_base_url": "https://autoplans.dev/api/v1/mcp",
-      "identifier": "autoplans-mcp",
+      "registry_type": "github",
+      "identifier": "msaid/autoplans-mcp",
       "version": "0.1.0",
       "transport": {
-        "type": "http",
-        "base_url": "https://autoplans.dev/api/v1/mcp",
-        "headers": {
-          "Authorization": "Bearer ${AUTOPLANS_API_KEY}"
-        }
+        "type": "stdio"
       },
       "environment_variables": [
         {
