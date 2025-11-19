@@ -1,19 +1,52 @@
 # Autoplans MCP Server
 
-This repository contains the MCP manifest for the live **Autoplans.dev MCP Server** - a comprehensive project management and planning tool suite accessible via the Model Context Protocol.
+**What We've Built**
 
-**Files**
-- `mcp.json` - MCP manifest with metadata, 14+ real tools, auth, and healthcheck
-- `README.md` - Usage examples and publish instructions
+This repo contains everything needed to publish your Autoplans.dev MCP server to the official registry:
 
-**Live Server**: `https://autoplans.dev/api/v1/mcp`
+1. **`server.json`** - MCP Registry manifest using latest 2025-10-17 schema
+2. **`package.json`** - npm package configuration  
+3. **`index.js`** - stdio wrapper that proxies to your HTTP API
+4. **`mcp.json`** - Original manifest (kept for reference)
 
-**Ready to publish checklist**
-✅ Server is live at `https://autoplans.dev/api/v1/mcp`  
-✅ All 14+ tools are working (verified with curl)  
-✅ Authentication with API keys is implemented  
-✅ Health check endpoint is available  
-✅ Manifest contains real tool schemas
+**How It Works**
+
+Your server runs as HTTP at `https://autoplans.dev/api/v1/mcp`, but the MCP Registry expects stdio-based packages. Our wrapper solves this by:
+
+- Publishing an npm package that provides stdio transport
+- Proxying MCP stdio calls to your HTTP API  
+- Requiring users to set `AUTOPLANS_API_KEY` environment variable
+- Enabling discovery through the official MCP Registry
+
+**Publishing Status**
+- ✅ GitHub repo: Created and pushed  
+- ✅ MCP manifest: Created with latest 2025-10-17 schema  
+- ✅ npm package: Created wrapper for stdio transport  
+- ⏳ npm publish: Requires npm login (see instructions below)  
+- ⏳ MCP Registry: Pending npm package publication  
+
+**Final Publishing Steps**
+
+1. **Login to npm**:
+```bash
+npm login
+# Follow browser authentication flow
+```
+
+2. **Publish to npm**:
+```bash
+npm publish
+```
+
+3. **Publish to MCP Registry**:
+```bash
+mcp-publisher publish
+```
+
+4. **Verify publication**:
+```bash
+curl "https://registry.modelcontextprotocol.io/v0/servers?search=autoplans"
+```
 
 **Publish steps**
 
