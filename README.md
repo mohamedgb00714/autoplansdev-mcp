@@ -19,33 +19,22 @@ Your server runs as HTTP at `https://autoplans.dev/api/v1/mcp`, but the MCP Regi
 - Enabling discovery through the official MCP Registry
 
 **Publishing Status**
-- ✅ GitHub repo: Created and pushed  
-- ✅ MCP manifest: Created with latest 2025-10-17 schema  
-- ✅ npm package: Created wrapper for stdio transport  
-- ⏳ npm publish: Requires npm login (see instructions below)  
-- ⏳ MCP Registry: Pending npm package publication  
+- ✅ GitHub repo: https://github.com/mohamedgb00714/autoplans-mcp
+- ✅ npm package: https://npm.im/autoplans-mcp v0.1.1  
+- ✅ MCP Registry: https://registry.modelcontextprotocol.io/v0/servers?search=autoplans
+- ✅ **LIVE AND DISCOVERABLE!** 🎉
 
-**Final Publishing Steps**
+**Installation & Usage**
 
-1. **Login to npm**:
 ```bash
-npm login
-# Follow browser authentication flow
-```
+# Install the MCP server
+npm install -g autoplans-mcp
 
-2. **Publish to npm**:
-```bash
-npm publish
-```
+# Set your API key (get from https://autoplans.dev)  
+export AUTOPLANS_API_KEY="your_api_key_here"
 
-3. **Publish to MCP Registry**:
-```bash
-mcp-publisher publish
-```
-
-4. **Verify publication**:
-```bash
-curl "https://registry.modelcontextprotocol.io/v0/servers?search=autoplans"
+# Use with any MCP client
+autoplans-mcp
 ```
 
 **Publish steps**
