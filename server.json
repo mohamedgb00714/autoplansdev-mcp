@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
   "name": "io.github.msaid/autoplans-mcp",
-  "description": "MCP Server for Autoplans.dev - AI-powered project planning and task management tools with 14+ tools for projects, tasks, business plans, and branding",
+  "description": "AI-powered project planning tools for Autoplans.dev with 14+ MCP tools",
   "repository": {
     "url": "https://github.com/msaid/autoplans-mcp",
     "source": "github"
