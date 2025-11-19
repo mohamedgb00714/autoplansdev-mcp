@@ -1,16 +1,16 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
-  "name": "io.github.msaid/autoplans-mcp",
+  "name": "io.github.mohamedgb00714/autoplans-mcp",
   "description": "AI-powered project planning tools for Autoplans.dev with 14+ MCP tools",
   "repository": {
-    "url": "https://github.com/msaid/autoplans-mcp",
+    "url": "https://github.com/mohamedgb00714/autoplans-mcp",
     "source": "github"
   },
   "version": "0.1.0",
   "packages": [
     {
       "registryType": "github",
-      "identifier": "msaid/autoplans-mcp",
+      "identifier": "mohamedgb00714/autoplans-mcp",
       "version": "0.1.0",
       "transport": {
         "type": "stdio"
